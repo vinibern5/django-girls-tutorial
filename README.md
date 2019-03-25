@@ -8,10 +8,10 @@
 4. Instalar django a partir do requirements.txt
 5. Iniciar o projeto a partir do django-admin usando o comando: `django-admin startproject mysite .`
 
-6. Dentro da pasta mysite
-   - Modificar a TIME_ZONE em settings.py p/ nossa timezone, no caso `'America/Sao_Paulo'`
-   - Modificar a LANGUAGE_CODE em settings.py p/ codigo da nossa lingua, no caso `'pt-BR'`
-   - Adicionar a URL para arquivos estaticos
+6. Dentro do arquivo `mysite/settings.py`:
+   - Modificar a variável TIME_ZONE em settings.py p/ nossa timezone, no caso `'America/Sao_Paulo'`
+   - Modificar a variável LANGUAGE_CODE em settings.py p/ codigo do nosso idioma, no caso `'pt-BR'`
+   - Adicionar configurações para arquivos estaticos
    
    ```python
    STATIC_URL = '/static/'
@@ -25,7 +25,7 @@
 
 1. Criar nossa aplicação, com o comando `python manage.py startapp blog` na raiz do repositório
 2. Adicionar a aplicação *blog* na lista de aplicações, em settings.py do *mysite*. Adicionar 'blog' na lista INSTALLED_APPS
-3. Criar o modelo no arquivo 'blog/models.py' (que é onde ficam os models da aplicação)
+3. Criar nossos novos models no arquivo 'blog/models.py' (que é onde ficam os models da aplicação)
 4. Criar os scripts para adicionar os modelos no banco de dados usando o comando `python manage.py makemigrations blog`
 5. Aplique as migrações com o comando `python manage.py migrate blog`
 
@@ -41,7 +41,7 @@
     ```
 2. No diretório da nossa aplicação, que no nosso caso está em *blog/*, criamos um arquivo chamado *urls.py* para conter as urls da nossa aplicação. Esse arquivo vai conter uma lista de urlpatterns que serão utilizadas para identificar o que fazer para cada caminho de rota.
 3. A lista de urlpatterns contem elementos path(), que são utilizados pelo django para resolver que view será usada em cada rota.
-4. Nos criamos nossas views da nossa app (blog) em *blog/views.py*. As views são funções que recebem uma request e retornam algo p/ ser renderizado ou mostrado naquela view.
+4. Criamos as views da nossa app (blog) em *blog/views.py*. As views são funções que recebem uma request e retornam algo p/ ser renderizado ou mostrado naquela view, também existem outros tipos de views baseadas em classes. As views também podem receber outros parametros, caso a url da view contenha parametros (como no exemplo `post/<int:pk>`).
 
 Exemplo de urlpatterns:
 ```python
@@ -68,12 +68,12 @@ def post_list(request):
 
 # ORM
 
-O django possui um ORM bem poderoso, para isso, basta importarmos o nosso model, e usar alguns metodos que o django põe no nosso model, muito pratico!
+O django possui um ORM bem poderoso, para isso, basta importarmos o nosso model, e usar alguns metodos que o django põe no nosso model.
 Também tem algumas funções embutidas que permitem obter instancias dos nossos dados, como get_object_or_404.
 
 # Arquivos estaticos
 
-Para nossa app (blog), os arquivos estaticos devem ir na pasta blog/static
+Para nossa app (blog), os arquivos estaticos devem ir na pasta blog/static.
 Para usar os arquivos estaticos, devemos por a diretiva `{% load static %}` em nossos templates, e então importar os arquivos estaticos de forma similar a `<link rel="stylesheet" href="{% static 'css/blog.css' %}">`
 
 # Forms do Django
